@@ -1,7 +1,6 @@
-Laravel API Key Auth
-========
+# Auth By Key
 
-[![Build](https://github.com/cable8mm/auth-by-key/actions/workflows/build.yml/badge.svg)](https://github.com/cable8mm/auth-by-key/actions/workflows/build.yml)
+[![Tests](https://github.com/cable8mm/auth-by-key/actions/workflows/tests.yml/badge.svg)](https://github.com/cable8mm/auth-by-key/actions/workflows/tests.yml)
 [![PHP Linting (Pint)](https://github.com/cable8mm/auth-by-key/actions/workflows/coding-style-php.yml/badge.svg)](https://github.com/cable8mm/auth-by-key/actions/workflows/coding-style-php.yml)
 [![Latest Stable Version](http://poser.pugx.org/cable8mm/auth-by-key/v)](https://packagist.org/packages/cable8mm/auth-by-key)
 [![Total Downloads](http://poser.pugx.org/cable8mm/auth-by-key/downloads)](https://packagist.org/packages/cable8mm/auth-by-key)
@@ -9,7 +8,9 @@ Laravel API Key Auth
 [![License](http://poser.pugx.org/cable8mm/auth-by-key/license)](https://packagist.org/packages/cable8mm/auth-by-key)
 [![PHP Version Require](http://poser.pugx.org/cable8mm/auth-by-key/require/php)](https://packagist.org/packages/cable8mm/auth-by-key)
 
-This version is a [fork](https://github.com/ejarnutowski/auth-by-key).
+We are also able to use Laravel's first-party libraries for authorization, but it might not be lightweight. Yes, as a user Eloquent model, this can help with the problem. Only requests that pass through the 'auth-by-key' layer can proceed to the next stage through Laravel request.
+
+This was born from [fork](https://github.com/ejarnutowski/laravel-api-key).
 
 ## Installation
 
