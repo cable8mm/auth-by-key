@@ -1,19 +1,19 @@
 Laravel API Key Auth
 ========
 
-[![Build](https://github.com/cable8mm/laravel-api-key/actions/workflows/build.yml/badge.svg)](https://github.com/cable8mm/laravel-api-key/actions/workflows/build.yml)
-[![PHP Linting (Pint)](https://github.com/cable8mm/laravel-api-key/actions/workflows/coding-style-php.yml/badge.svg)](https://github.com/cable8mm/laravel-api-key/actions/workflows/coding-style-php.yml)
-[![Latest Stable Version](http://poser.pugx.org/cable8mm/laravel-api-key/v)](https://packagist.org/packages/cable8mm/laravel-api-key)
-[![Total Downloads](http://poser.pugx.org/cable8mm/laravel-api-key/downloads)](https://packagist.org/packages/cable8mm/laravel-api-key)
-[![Latest Unstable Version](http://poser.pugx.org/cable8mm/laravel-api-key/v/unstable)](https://packagist.org/packages/cable8mm/laravel-api-key)
-[![License](http://poser.pugx.org/cable8mm/laravel-api-key/license)](https://packagist.org/packages/cable8mm/laravel-api-key)
-[![PHP Version Require](http://poser.pugx.org/cable8mm/laravel-api-key/require/php)](https://packagist.org/packages/cable8mm/laravel-api-key)
+[![Build](https://github.com/cable8mm/auth-by-key/actions/workflows/build.yml/badge.svg)](https://github.com/cable8mm/auth-by-key/actions/workflows/build.yml)
+[![PHP Linting (Pint)](https://github.com/cable8mm/auth-by-key/actions/workflows/coding-style-php.yml/badge.svg)](https://github.com/cable8mm/auth-by-key/actions/workflows/coding-style-php.yml)
+[![Latest Stable Version](http://poser.pugx.org/cable8mm/auth-by-key/v)](https://packagist.org/packages/cable8mm/auth-by-key)
+[![Total Downloads](http://poser.pugx.org/cable8mm/auth-by-key/downloads)](https://packagist.org/packages/cable8mm/auth-by-key)
+[![Latest Unstable Version](http://poser.pugx.org/cable8mm/auth-by-key/v/unstable)](https://packagist.org/packages/cable8mm/auth-by-key)
+[![License](http://poser.pugx.org/cable8mm/auth-by-key/license)](https://packagist.org/packages/cable8mm/auth-by-key)
+[![PHP Version Require](http://poser.pugx.org/cable8mm/auth-by-key/require/php)](https://packagist.org/packages/cable8mm/auth-by-key)
 
-This version is a [fork](https://github.com/ejarnutowski/laravel-api-key).
+This version is a [fork](https://github.com/ejarnutowski/auth-by-key).
 
 ## Installation
 
-Run `composer require cable8mm/laravel-api-key`.
+Run `composer require cable8mm/auth-by-key`.
 
 Run the migrations
 
@@ -134,13 +134,13 @@ Requests that do not pass authorization will receive an HTTP 401 Status Code wit
 Publish the nova resource file
 
 ```sh
-php artisan vendor:publish --tag=laravel-api-key-nova
+php artisan vendor:publish --tag=auth-by-key-nova
 ```
 
 If you will typically need to overwrite,
 
 ```sh
-php artisan vendor:publish --tag=laravel-api-key-nova --force
+php artisan vendor:publish --tag=auth-by-key-nova --force
 ```
 
 ## Fix coding style
@@ -157,4 +157,4 @@ composer test
 
 ## License
 
-The Laravel API Key package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+The Auth By Key package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).

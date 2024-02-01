@@ -1,5 +1,5 @@
 {
-    "name": "cable8mm/laravel-api-key",
+    "name": "cable8mm/auth-by-key",
     "description": "Authorize requests to your Laravel application with API keys",
     "keywords": ["api", "api key", "authentication", "authorization", "laravel"],
     "license": "MIT",
@@ -27,18 +27,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Cable8mm\\LaravelApiKey\\": "src/"
+            "Cable8mm\\AuthByKey\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Cable8mm\\LaravelApiKey\\Tests\\": "tests/"
+            "Cable8mm\\AuthByKey\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Cable8mm\\LaravelApiKey\\ApiKeyServiceProvider"
+                "Cable8mm\\AuthByKey\\ApiKeyServiceProvider"
             ]
         }
     },

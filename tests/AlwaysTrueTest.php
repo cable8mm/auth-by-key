@@ -1,6 +1,6 @@
 <?php
 
-namespace Cable8mm\LaravelApiKey\Tests;
+namespace Cable8mm\AuthByKey\Tests;
 
 use PHPUnit\Framework\TestCase;
 
