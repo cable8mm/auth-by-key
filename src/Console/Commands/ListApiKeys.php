@@ -1,8 +1,8 @@
 <?php
 
-namespace Cable8mm\LaravelApiKey\Console\Commands;
+namespace Cable8mm\AuthByKey\Console\Commands;
 
-use Cable8mm\LaravelApiKey\Models\ApiKey;
+use Cable8mm\AuthByKey\Models\ApiKey;
 use Illuminate\Console\Command;
 
 class ListApiKeys extends Command

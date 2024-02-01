@@ -1,13 +1,13 @@
 <?php
 
-namespace Cable8mm\LaravelApiKey;
+namespace Cable8mm\AuthByKey;
 
-use Cable8mm\LaravelApiKey\Console\Commands\ActivateApiKey;
-use Cable8mm\LaravelApiKey\Console\Commands\DeactivateApiKey;
-use Cable8mm\LaravelApiKey\Console\Commands\DeleteApiKey;
-use Cable8mm\LaravelApiKey\Console\Commands\GenerateApiKey;
-use Cable8mm\LaravelApiKey\Console\Commands\ListApiKeys;
-use Cable8mm\LaravelApiKey\Http\Middleware\AuthorizeApiKey;
+use Cable8mm\AuthByKey\Console\Commands\ActivateApiKey;
+use Cable8mm\AuthByKey\Console\Commands\DeactivateApiKey;
+use Cable8mm\AuthByKey\Console\Commands\DeleteApiKey;
+use Cable8mm\AuthByKey\Console\Commands\GenerateApiKey;
+use Cable8mm\AuthByKey\Console\Commands\ListApiKeys;
+use Cable8mm\AuthByKey\Http\Middleware\AuthorizeApiKey;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,7 +23,7 @@ class ApiKeyServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../stubs/ApiKey.stub' => $this->app->basePath('app/Nova/ApiKey.php'),
-        ], 'laravel-api-key-nova');
+        ], 'auth-by-key-nova');
     }
 
     /**

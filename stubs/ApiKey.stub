@@ -13,9 +13,9 @@ class ApiKey extends Resource
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\Cable8mm\LaravelApiKey\Models\ApiKey>
+     * @var class-string<\Cable8mm\AuthByKey\Models\ApiKey>
      */
-    public static $model = \Cable8mm\LaravelApiKey\Models\ApiKey::class;
+    public static $model = \Cable8mm\AuthByKey\Models\ApiKey::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
