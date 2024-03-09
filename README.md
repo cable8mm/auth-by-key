@@ -1,16 +1,16 @@
 # Auth By Key
 
-[![Tests](https://github.com/cable8mm/auth-by-key/actions/workflows/tests.yml/badge.svg)](https://github.com/cable8mm/auth-by-key/actions/workflows/tests.yml)
-[![PHP Linting (Pint)](https://github.com/cable8mm/auth-by-key/actions/workflows/coding-style-php.yml/badge.svg)](https://github.com/cable8mm/auth-by-key/actions/workflows/coding-style-php.yml)
-[![Latest Stable Version](http://poser.pugx.org/cable8mm/auth-by-key/v)](https://packagist.org/packages/cable8mm/auth-by-key)
-[![Total Downloads](http://poser.pugx.org/cable8mm/auth-by-key/downloads)](https://packagist.org/packages/cable8mm/auth-by-key)
-[![Latest Unstable Version](http://poser.pugx.org/cable8mm/auth-by-key/v/unstable)](https://packagist.org/packages/cable8mm/auth-by-key)
-[![License](http://poser.pugx.org/cable8mm/auth-by-key/license)](https://packagist.org/packages/cable8mm/auth-by-key)
-[![PHP Version Require](http://poser.pugx.org/cable8mm/auth-by-key/require/php)](https://packagist.org/packages/cable8mm/auth-by-key)
+[![code-style](https://github.com/cable8mm/auth-by-key/actions/workflows/code-style.yml/badge.svg)](https://github.com/cable8mm/auth-by-key/actions/workflows/code-style.yml)
+[![run-tests](https://github.com/cable8mm/auth-by-key/actions/workflows/run-tests.yml/badge.svg)](https://github.com/cable8mm/auth-by-key/actions/workflows/run-tests.yml)
+![Packagist Version](https://img.shields.io/packagist/v/cable8mm/auth-by-key)
+![Packagist Downloads](https://img.shields.io/packagist/dt/cable8mm/auth-by-key)
+![Packagist Dependency Version](https://img.shields.io/packagist/dependency-v/cable8mm/auth-by-key/php)
+![Packagist Stars](https://img.shields.io/packagist/stars/cable8mm/auth-by-key)
+![Packagist License](https://img.shields.io/packagist/l/cable8mm/auth-by-key)
 
 We are also able to use Laravel's first-party libraries for authorization, but it might not be lightweight. Yes, as a user Eloquent model, this can help with the problem. Only requests that pass through the 'auth-by-key' layer can proceed to the next stage through Laravel request.
 
-This was born from [fork](https://github.com/ejarnutowski/laravel-api-key).
+We have provided the API Documentation on the web. For more information, please visit https://www.palgle.com/auth-by-key/ ❤️
 
 ## Installation
 
@@ -22,15 +22,15 @@ Run the migrations
 
 1 new database tables will be created:
 
-* api_keys
+- api_keys
 
 ## Managing Keys
 
-Generate a new key using `php artisan apikey:generate {name}`.  The name argument is the name of your API key.  All new keys are active by default.
+Generate a new key using `php artisan apikey:generate {name}`. The name argument is the name of your API key. All new keys are active by default.
 
 ```bash
 $ php artisan apikey:generate app1
-  
+
 // API key created
 // Name: app1
 // Key: 0ZdNlr7LrQocaqz74k6usQsOsqhqSIaUarSTf8mxnHuQVh9CvKAfpUy94VvBmFMq
@@ -40,7 +40,7 @@ Deactivate a key using `php artisan apikey:deactivate {name}`.
 
 ```bash
 $ php artisan apikey:deactivate app1
-  
+
 // Deactivated key: app1
 ```
 
@@ -48,26 +48,26 @@ Activate a key using `php artisan apikey:activate {name}`.
 
 ```bash
 $ php artisan apikey:activate app1
-  
+
 // Activated key: app1
 ```
-    
-Delete a key.  You'll be asked to confirm.  Keys are [soft-deleted](https://laravel.com/docs/eloquent#soft-deleting) for record keeping.
+
+Delete a key. You'll be asked to confirm. Keys are [soft-deleted](https://laravel.com/docs/eloquent#soft-deleting) for record keeping.
 
 ```bash
 $ php artisan apikey:delete app1
-  
+
 // Are you sure you want to delete API key 'app1'? (yes/no) [no]:
 // > yes
-  
+
 // Deleted key: app1
 ```
 
-List all keys.  The -D or --deleted flag includes deleted keys
-    
+List all keys. The -D or --deleted flag includes deleted keys
+
 ```bash
 $ php artisan apikey:list -D
- 
+
 // +----------+----+-------------+---------------------+------------------------------------------------------------------+
 // | Name     | ID | Status      | Status Date         | Key                                                              |
 // +----------+----+-------------+---------------------+------------------------------------------------------------------+
@@ -82,7 +82,7 @@ $ php artisan apikey:list -D
 
 ### Implementing Authorization
 
-A new `auth.apikey` route middleware has been registered for you to use in your routes or controllers.  Below are examples on how to use middleware, but for detailed information, check out [Middleware](https://laravel.com/docs/middleware) in the Laravel Docs.
+A new `auth.apikey` route middleware has been registered for you to use in your routes or controllers. Below are examples on how to use middleware, but for detailed information, check out [Middleware](https://laravel.com/docs/middleware) in the Laravel Docs.
 
 Route example
 
@@ -122,11 +122,11 @@ Requests that do not pass authorization will receive an HTTP 401 Status Code wit
 
 ```json
 {
-    "errors": [
-        {
-            "message": "Unauthorized"
-        }
-    ]
+  "errors": [
+    {
+      "message": "Unauthorized"
+    }
+  ]
 }
 ```
 
