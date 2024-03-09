@@ -1,7 +1,13 @@
 {
     "name": "cable8mm/auth-by-key",
     "description": "Authorize requests to your Laravel application with API keys",
-    "keywords": ["api", "api key", "authentication", "authorization", "laravel"],
+    "keywords": [
+        "api",
+        "api key",
+        "authentication",
+        "authorization",
+        "laravel"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -22,8 +28,8 @@
         "laravel/helpers": "^1.1.0"
     },
     "require-dev": {
-        "laravel/pint": "^1.13",
-        "phpunit/phpunit": "^10.4"
+        "laravel/pint": "^1.0",
+        "phpunit/phpunit": "^9.0|^10.0|^11.0"
     },
     "autoload": {
         "psr-4": {
@@ -45,11 +51,9 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
-        "test": [
-            "./vendor/bin/phpunit tests"
-        ],
-        "lint": [
-            "./vendor/bin/pint"
-        ]
+        "test": "./vendor/bin/phpunit tests",
+        "lint": "./vendor/bin/pint",
+        "inspect": "./vendor/bin/pint --test",
+        "apidoc": "doctum.phar update doctum.php --output-format=github --no-ansi --no-progress"
     }
 }
