@@ -10,25 +10,33 @@ class ApiKey extends Model
 {
     use SoftDeletes;
 
-    const EVENT_NAME_CREATED = 'created';
+    public const EVENT_NAME_CREATED = 'created';
 
-    const EVENT_NAME_ACTIVATED = 'activated';
+    public const EVENT_NAME_ACTIVATED = 'activated';
 
-    const EVENT_NAME_DEACTIVATED = 'deactivated';
+    public const EVENT_NAME_DEACTIVATED = 'deactivated';
 
-    const EVENT_NAME_DELETED = 'deleted';
+    public const EVENT_NAME_DELETED = 'deleted';
 
     protected static $nameRegex = '/^[a-z0-9-]{1,255}$/';
 
     protected $table = 'api_keys';
+
+    protected $fillable = [
+        'name',
+        'key',
+        'active',
+    ];
 
     /**
      * Generate a secure unique API key
      */
     public static function generate(): string
     {
+        $keyLength = config('auth-by-key.key_length', 64);
+
         do {
-            $key = Str::random(64);
+            $key = Str::random($keyLength);
         } while (self::keyExists($key));
 
         return $key;
@@ -37,9 +45,9 @@ class ApiKey extends Model
     /**
      * Get ApiKey record by key value
      *
-     * @param  string  $key
+     * @return static|null
      */
-    public static function getByKey($key)
+    public static function getByKey(string $key): ?self
     {
         return self::where([
             'key' => $key,
@@ -49,20 +57,16 @@ class ApiKey extends Model
 
     /**
      * Check if key is valid
-     *
-     * @param  string  $key
      */
-    public static function isValidKey($key): bool
+    public static function isValidKey(string $key): bool
     {
         return self::getByKey($key) instanceof self;
     }
 
     /**
      * Check if name is valid format
-     *
-     * @param  string  $name
      */
-    public static function isValidName($name): bool
+    public static function isValidName(string $name): bool
     {
         return (bool) preg_match(self::$nameRegex, $name);
     }
@@ -71,10 +75,8 @@ class ApiKey extends Model
      * Check if a key already exists
      *
      * Includes soft deleted records
-     *
-     * @param  string  $key
      */
-    public static function keyExists($key): bool
+    public static function keyExists(string $key): bool
     {
         return self::where('key', $key)->withTrashed()->first() instanceof self;
     }
@@ -83,10 +85,8 @@ class ApiKey extends Model
      * Check if a name already exists
      *
      * Does not include soft deleted records
-     *
-     * @param  string  $name
      */
-    public static function nameExists($name): bool
+    public static function nameExists(string $name): bool
     {
         return self::where('name', $name)->first() instanceof self;
     }

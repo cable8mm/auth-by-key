@@ -2,17 +2,14 @@
 
 namespace Cable8mm\AuthByKey\Console\Commands;
 
+use Cable8mm\AuthByKey\Console\Traits\ValidatesApiKeyName;
+use Cable8mm\AuthByKey\Events\ApiKeyCreated;
 use Cable8mm\AuthByKey\Models\ApiKey;
 use Illuminate\Console\Command;
 
 class GenerateApiKey extends Command
 {
-    /**
-     * Error messages
-     */
-    const MESSAGE_ERROR_INVALID_NAME_FORMAT = 'Invalid name.  Must be a lowercase alphabetic characters, numbers and hyphens less than 255 characters long.';
-
-    const MESSAGE_ERROR_NAME_ALREADY_USED = 'Name is unavailable.';
+    use ValidatesApiKeyName;
 
     /**
      * The name and signature of the console command.
@@ -48,25 +45,10 @@ class GenerateApiKey extends Command
         $apiKey->key = ApiKey::generate();
         $apiKey->save();
 
+        event(new ApiKeyCreated($apiKey));
+
         $this->info('API key created');
         $this->info('Name: '.$apiKey->name);
         $this->info('Key: '.$apiKey->key);
-    }
-
-    /**
-     * Validate name
-     *
-     * @param  string  $name
-     */
-    protected function validateName($name): ?string
-    {
-        if (! ApiKey::isValidName($name)) {
-            return self::MESSAGE_ERROR_INVALID_NAME_FORMAT;
-        }
-        if (ApiKey::nameExists($name)) {
-            return self::MESSAGE_ERROR_NAME_ALREADY_USED;
-        }
-
-        return null;
     }
 }

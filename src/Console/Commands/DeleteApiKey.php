@@ -2,17 +2,14 @@
 
 namespace Cable8mm\AuthByKey\Console\Commands;
 
+use Cable8mm\AuthByKey\Console\Traits\ValidatesApiKeyName;
+use Cable8mm\AuthByKey\Events\ApiKeyDeleted;
 use Cable8mm\AuthByKey\Models\ApiKey;
 use Illuminate\Console\Command;
 
 class DeleteApiKey extends Command
 {
-    /**
-     * Error messages
-     */
-    const MESSAGE_ERROR_INVALID_NAME = 'Invalid name.';
-
-    const MESSAGE_ERROR_NAME_DOES_NOT_EXIST = 'Name does not exist.';
+    use ValidatesApiKeyName;
 
     /**
      * The name and signature of the console command.
@@ -52,23 +49,8 @@ class DeleteApiKey extends Command
         $key = ApiKey::where('name', $name)->first();
         $key->delete();
 
+        event(new ApiKeyDeleted($key));
+
         $this->info('Deleted key: '.$name);
-    }
-
-    /**
-     * Validate name
-     *
-     * @param  string  $name
-     */
-    protected function validateName($name): ?string
-    {
-        if (! ApiKey::isValidName($name)) {
-            return self::MESSAGE_ERROR_INVALID_NAME;
-        }
-        if (! ApiKey::nameExists($name)) {
-            return self::MESSAGE_ERROR_NAME_DOES_NOT_EXIST;
-        }
-
-        return null;
     }
 }
