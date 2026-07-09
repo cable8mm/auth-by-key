@@ -8,8 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ApiKeyTest extends TestCase
 {
-    #[Test]
-    public function it_validates_name_format(): void
+    public function test_validates_name_format(): void
     {
         $this->assertTrue(ApiKey::isValidName('test-key'));
         $this->assertTrue(ApiKey::isValidName('test123'));
