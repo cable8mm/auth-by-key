@@ -1,5 +1,5 @@
 var Doctum = {
-    treeJson: {"tree":{"l":0,"n":"","p":"","c":[{"l":1,"n":"Cable8mm","p":"Cable8mm","c":[{"l":2,"n":"AuthByKey","p":"Cable8mm/AuthByKey","c":[{"l":3,"n":"Console","p":"Cable8mm/AuthByKey/Console","c":[{"l":4,"n":"Commands","p":"Cable8mm/AuthByKey/Console/Commands","c":[{"l":5,"n":"ActivateApiKey","p":"Cable8mm/AuthByKey/Console/Commands/ActivateApiKey"},{"l":5,"n":"DeactivateApiKey","p":"Cable8mm/AuthByKey/Console/Commands/DeactivateApiKey"},{"l":5,"n":"DeleteApiKey","p":"Cable8mm/AuthByKey/Console/Commands/DeleteApiKey"},{"l":5,"n":"GenerateApiKey","p":"Cable8mm/AuthByKey/Console/Commands/GenerateApiKey"},{"l":5,"n":"ListApiKeys","p":"Cable8mm/AuthByKey/Console/Commands/ListApiKeys"}]}]},{"l":3,"n":"Exceptions","p":"Cable8mm/AuthByKey/Exceptions","c":[{"l":4,"n":"AuthByKeyException","p":"Cable8mm/AuthByKey/Exceptions/AuthByKeyException"}]},{"l":3,"n":"Http","p":"Cable8mm/AuthByKey/Http","c":[{"l":4,"n":"Middleware","p":"Cable8mm/AuthByKey/Http/Middleware","c":[{"l":5,"n":"AuthorizeApiKey","p":"Cable8mm/AuthByKey/Http/Middleware/AuthorizeApiKey"}]}]},{"l":3,"n":"Models","p":"Cable8mm/AuthByKey/Models","c":[{"l":4,"n":"ApiKey","p":"Cable8mm/AuthByKey/Models/ApiKey"}]},{"l":3,"n":"ApiKeyServiceProvider","p":"Cable8mm/AuthByKey/ApiKeyServiceProvider"}]}]}]},"treeOpenLevel":2},
+    treeJson: {"tree":{"l":0,"n":"","p":"","c":[{"l":1,"n":"Cable8mm","p":"Cable8mm","c":[{"l":2,"n":"AuthByKey","p":"Cable8mm/AuthByKey","c":[{"l":3,"n":"Console","p":"Cable8mm/AuthByKey/Console","c":[{"l":4,"n":"Commands","p":"Cable8mm/AuthByKey/Console/Commands","c":[{"l":5,"n":"ActivateApiKey","p":"Cable8mm/AuthByKey/Console/Commands/ActivateApiKey"},{"l":5,"n":"DeactivateApiKey","p":"Cable8mm/AuthByKey/Console/Commands/DeactivateApiKey"},{"l":5,"n":"DeleteApiKey","p":"Cable8mm/AuthByKey/Console/Commands/DeleteApiKey"},{"l":5,"n":"GenerateApiKey","p":"Cable8mm/AuthByKey/Console/Commands/GenerateApiKey"},{"l":5,"n":"ListApiKeys","p":"Cable8mm/AuthByKey/Console/Commands/ListApiKeys"}]},{"l":4,"n":"Traits","p":"Cable8mm/AuthByKey/Console/Traits","c":[{"l":5,"n":"ValidatesApiKeyName","p":"Cable8mm/AuthByKey/Console/Traits/ValidatesApiKeyName"}]}]},{"l":3,"n":"Events","p":"Cable8mm/AuthByKey/Events","c":[{"l":4,"n":"ApiKeyActivated","p":"Cable8mm/AuthByKey/Events/ApiKeyActivated"},{"l":4,"n":"ApiKeyCreated","p":"Cable8mm/AuthByKey/Events/ApiKeyCreated"},{"l":4,"n":"ApiKeyDeactivated","p":"Cable8mm/AuthByKey/Events/ApiKeyDeactivated"},{"l":4,"n":"ApiKeyDeleted","p":"Cable8mm/AuthByKey/Events/ApiKeyDeleted"}]},{"l":3,"n":"Exceptions","p":"Cable8mm/AuthByKey/Exceptions","c":[{"l":4,"n":"AuthByKeyException","p":"Cable8mm/AuthByKey/Exceptions/AuthByKeyException"}]},{"l":3,"n":"Http","p":"Cable8mm/AuthByKey/Http","c":[{"l":4,"n":"Middleware","p":"Cable8mm/AuthByKey/Http/Middleware","c":[{"l":5,"n":"AuthorizeApiKey","p":"Cable8mm/AuthByKey/Http/Middleware/AuthorizeApiKey"}]}]},{"l":3,"n":"Models","p":"Cable8mm/AuthByKey/Models","c":[{"l":4,"n":"ApiKey","p":"Cable8mm/AuthByKey/Models/ApiKey"}]},{"l":3,"n":"ApiKeyServiceProvider","p":"Cable8mm/AuthByKey/ApiKeyServiceProvider"}]}]}]},"treeOpenLevel":2},
     /** @var boolean */
     treeLoaded: false,
     /** @var boolean */
@@ -261,10 +261,13 @@ var Doctum = {
     /**
      * Clean the search query
      *
-     * @param string query
+     * @param string|null query
      * @return string
      */
     cleanSearchQuery: function (query) {
+        if (typeof query !== 'string') {
+            return '';
+        }
         // replace any chars that could lead to injecting code in our regex
         // remove start or end spaces
         // replace backslashes by an escaped version, use case in search: \myRootFunction
