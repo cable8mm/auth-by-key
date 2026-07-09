@@ -10,7 +10,7 @@
 
 We are also able to use Laravel's first-party libraries for authorization, but it might not be lightweight. Yes, as a user Eloquent model, this can help with the problem. Only requests that pass through the 'auth-by-key' layer can proceed to the next stage through Laravel request.
 
-We have provided the API Documentation on the web. For more information, please visit https://www.palgle.com/auth-by-key/ ❤️
+We have provided the API Documentation on the web. For more information, please visit <https://www.palgle.com/auth-by-key/> ❤️
 
 ## Installation
 
