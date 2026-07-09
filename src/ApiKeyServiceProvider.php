@@ -24,6 +24,10 @@ class ApiKeyServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../stubs/ApiKey.stub' => $this->app->basePath('app/Nova/ApiKey.php'),
         ], 'auth-by-key-nova');
+
+        $this->publishes([
+            __DIR__.'/../config/auth-by-key.php' => $this->app->configPath('auth-by-key.php'),
+        ], 'auth-by-key-config');
     }
 
     /**
