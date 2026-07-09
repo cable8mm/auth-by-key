@@ -15,8 +15,8 @@ trait ValidatesApiKeyName
             return 'Invalid name. Must be a lowercase alphabetic characters, numbers and hyphens less than 255 characters long.';
         }
 
-        if (! ApiKey::nameExists($name)) {
-            return 'Name does not exist.';
+        if (ApiKey::nameExists($name)) {
+            return 'Name already exists.';
         }
 
         return null;

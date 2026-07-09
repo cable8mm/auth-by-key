@@ -34,12 +34,17 @@ class ApiKey extends Model
     public static function generate(): string
     {
         $keyLength = config('auth-by-key.key_length', 64);
+        $maxAttempts = 10;
 
-        do {
+        for ($i = 0; $i < $maxAttempts; $i++) {
             $key = Str::random($keyLength);
-        } while (self::keyExists($key));
 
-        return $key;
+            if (! self::keyExists($key)) {
+                return $key;
+            }
+        }
+
+        throw new \RuntimeException('Unable to generate unique API key after '.$maxAttempts.' attempts');
     }
 
     /**

@@ -15,14 +15,11 @@ class CreateApiKeysTable extends Migration
     {
         Schema::create('api_keys', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('key', 64);
+            $table->string('name')->unique();
+            $table->string('key', 64)->unique();
             $table->boolean('active')->default(1);
             $table->timestamps();
             $table->softDeletes();
-
-            $table->index('name');
-            $table->index('key');
         });
     }
 

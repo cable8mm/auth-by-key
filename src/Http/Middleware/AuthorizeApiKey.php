@@ -19,6 +19,11 @@ class AuthorizeApiKey
     public function handle(Request $request, Closure $next)
     {
         $header = $request->header(config('auth-by-key.header', 'X-Authorization'));
+
+        if (empty($header)) {
+            throw new AuthByKeyException('Invalid or inactive API key provided');
+        }
+
         $apiKey = ApiKey::getByKey($header);
 
         if ($apiKey instanceof ApiKey) {
