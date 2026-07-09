@@ -24,6 +24,44 @@ final class ApiKeyTest extends TestCase
         $this->assertFalse(ApiKey::isValidName(str_repeat('a', 256))); // too long (256 chars)
     }
 
+    public function test_name_validation_boundary_values(): void
+    {
+        // Test minimum length (1 character)
+        $this->assertTrue(ApiKey::isValidName('a'));
+        $this->assertTrue(ApiKey::isValidName('1'));
+        $this->assertTrue(ApiKey::isValidName('-'));
+
+        // Test maximum length (255 characters)
+        $maxLengthName = str_repeat('a', 255);
+        $this->assertTrue(ApiKey::isValidName($maxLengthName));
+
+        // Test over maximum length (256 characters)
+        $overMaxLengthName = str_repeat('a', 256);
+        $this->assertFalse(ApiKey::isValidName($overMaxLengthName));
+
+        // Test special characters (only lowercase, numbers, hyphens allowed)
+        $this->assertFalse(ApiKey::isValidName('test@key'));
+        $this->assertFalse(ApiKey::isValidName('test.key'));
+        $this->assertFalse(ApiKey::isValidName('test key'));
+        $this->assertFalse(ApiKey::isValidName('test!key'));
+    }
+
+    public function test_name_validation_with_numbers_and_hyphens(): void
+    {
+        // Test various combinations of valid characters
+        $this->assertTrue(ApiKey::isValidName('test-123'));
+        $this->assertTrue(ApiKey::isValidName('123-test'));
+        $this->assertTrue(ApiKey::isValidName('test123'));
+        $this->assertTrue(ApiKey::isValidName('a-b-c-1-2-3'));
+
+        // Test consecutive hyphens
+        $this->assertTrue(ApiKey::isValidName('test--key'));
+
+        // Test leading and trailing hyphens
+        $this->assertTrue(ApiKey::isValidName('-test'));
+        $this->assertTrue(ApiKey::isValidName('test-'));
+    }
+
     public function test_generate_creates_unique_key(): void
     {
         // This test requires Laravel's config() helper

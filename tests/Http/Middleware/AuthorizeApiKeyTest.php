@@ -56,4 +56,34 @@ final class AuthorizeApiKeyTest extends TestCase
             return 'passed';
         });
     }
+
+    public function test_middleware_with_empty_header_value(): void
+    {
+        $request = new Request;
+        $request->headers->set('X-Authorization', '');
+
+        $middleware = new AuthorizeApiKey;
+
+        // Empty header should also fail
+        $this->expectException(\Throwable::class);
+
+        $middleware->handle($request, function ($req) {
+            return 'passed';
+        });
+    }
+
+    public function test_middleware_with_null_header_value(): void
+    {
+        $request = new Request;
+        $request->headers->set('X-Authorization', null);
+
+        $middleware = new AuthorizeApiKey;
+
+        // Null header should fail
+        $this->expectException(\Throwable::class);
+
+        $middleware->handle($request, function ($req) {
+            return 'passed';
+        });
+    }
 }
