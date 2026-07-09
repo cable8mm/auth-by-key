@@ -6,6 +6,7 @@ use Cable8mm\AuthByKey\Exceptions\AuthByKeyException;
 use Cable8mm\AuthByKey\Models\ApiKey;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
 
 class AuthorizeApiKey
 {
@@ -23,6 +24,15 @@ class AuthorizeApiKey
         if (empty($header)) {
             throw new AuthByKeyException('Invalid or inactive API key provided');
         }
+
+        // Rate limiting based on API key
+        $key = 'api-key:'.$header;
+
+        if (RateLimiter::tooManyAttempts($key, 60)) { // 60 attempts per minute
+            throw new AuthByKeyException('Too many requests. Please try again later.');
+        }
+
+        RateLimiter::hit($key, 60); // 60 seconds
 
         $apiKey = ApiKey::getByKey($header);
 

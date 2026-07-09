@@ -29,6 +29,22 @@ class ApiKey extends Model
     ];
 
     /**
+     * Encrypt API key for storage
+     */
+    private static function encryptKey(string $key): string
+    {
+        return encrypt($key);
+    }
+
+    /**
+     * Decrypt API key from storage
+     */
+    private static function decryptKey(string $encryptedKey): string
+    {
+        return decrypt($encryptedKey);
+    }
+
+    /**
      * Generate a secure unique API key
      */
     public static function generate(): string
@@ -38,8 +54,9 @@ class ApiKey extends Model
 
         for ($i = 0; $i < $maxAttempts; $i++) {
             $key = Str::random($keyLength);
+            $encryptedKey = self::encryptKey($key);
 
-            if (! self::keyExists($key)) {
+            if (! self::keyExists($encryptedKey)) {
                 return $key;
             }
         }
@@ -54,8 +71,10 @@ class ApiKey extends Model
      */
     public static function getByKey(string $key): ?self
     {
+        $encryptedKey = self::encryptKey($key);
+
         return self::where([
-            'key' => $key,
+            'key' => $encryptedKey,
             'active' => 1,
         ])->first();
     }
@@ -83,7 +102,9 @@ class ApiKey extends Model
      */
     public static function keyExists(string $key): bool
     {
-        return self::where('key', $key)->withTrashed()->first() instanceof self;
+        $encryptedKey = self::encryptKey($key);
+
+        return self::where('key', $encryptedKey)->withTrashed()->first() instanceof self;
     }
 
     /**

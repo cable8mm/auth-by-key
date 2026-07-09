@@ -16,7 +16,7 @@ class CreateApiKeysTable extends Migration
         Schema::create('api_keys', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->string('key', 64)->unique();
+            $table->text('key')->unique(); // Changed to text for encrypted keys (longer)
             $table->boolean('active')->default(1);
             $table->timestamps();
             $table->softDeletes();
