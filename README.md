@@ -156,6 +156,39 @@ composer lint
 composer test
 ```
 
+### Test Coverage
+
+This package includes comprehensive test coverage. To run tests with coverage report:
+
+```sh
+# Run tests with HTML coverage report
+composer test -- --coverage-html coverage
+
+# View coverage report
+open coverage/index.html
+```
+
+### Coverage Configuration
+
+The test suite is configured with code coverage tracking in `phpunit.xml.dist`. The `src` directory is included in coverage analysis.
+
+### Writing Tests
+
+When contributing to this package, please ensure:
+
+1. All new features include corresponding tests
+2. Tests cover both success and failure scenarios
+3. Event dispatches are verified using Laravel's event faking
+4. Console commands test validation, execution, and output
+
+### CI/CD Integration
+
+Tests are automatically run on GitHub Actions for every pull request. The CI pipeline includes:
+
+- Code style checks with Laravel Pint
+- Full test suite execution
+- Code coverage reporting
+
 ## License
 
 The Auth By Key package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
